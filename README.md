@@ -2,9 +2,12 @@
 nanpy-drivers
 =============
 
-drivers for [Nanpy firmware](https://github.com/nanpy/nanpy-firmware) + [Arduino](http://www.arduino.cc/).
+Drivers for [Nanpy firmware](https://github.com/nanpy/nanpy-firmware) + [Arduino](http://www.arduino.cc/).
 
-Using this Linux driver the Arduino module can be used as an I2C expander or as a GPIO expander.
+Using this experimental Linux driver the Arduino module can be used as an I2C expander or as a GPIO expander.
+You can control GPIO pins using the [Linux GPIO interface](https://www.kernel.org/doc/Documentation/gpio/sysfs.txt),
+or you can connect I2C devices to the Arduino and use its kernel driver.
+(PCF8574 was tested only.)
 
 Future plans: 
  - add 1-Wire driver
