@@ -2,22 +2,26 @@
 nanpy-drivers
 =============
 
-drivers for Nanpy + Arduino
+drivers for [Nanpy firmware](https://github.com/nanpy/nanpy-firmware) + [Arduino](http://www.arduino.cc/).
 
-Current status:
-  common Linux driver for GPIO and I2C.
+Using this Linux driver the Arduino module can be used as an I2C expander or as a GPIO expander.
 
-
-Test system: Ubuntu 14.04.
+Future plans: 
+ - add 1-Wire driver
+ - add hwmon driver
+ - split driver into more modules
+ - dynamic query of the Arduino
 
 Build 
 =====
+
+Test system: Ubuntu 14.04.
 
     sudo apt-get install linux-image-extra-virtual i2c-tools build-essential
     make
     
 
-Testing gpio
+Testing GPIO
 ============
 
 Turning on pin D13:
@@ -34,7 +38,7 @@ Testing I2C
     sudo insmod nanpy/nanpy.ko
     sudo nanpyattach/nanpyattach /dev/ttyS0 &
     
-dmesg
+    dmesg
 
     serio: Serial port ttyS0
     nanpy serio2: Sleeping 2000 msec..
@@ -60,7 +64,7 @@ dmesg
         60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
         70: -- -- -- -- -- -- -- 77
 
-Testing pcf8574 on i2c bus
+Testing PCF8574 on I2C bus
 ==========================
 
     cd /sys/module/nanpy/drivers/serio:nanpy/serio*/i2c-*/
@@ -86,6 +90,7 @@ Removing driver
 ===============
     
 Unexport all GPIO (important!)
+
     echo 237 | sudo tee /sys/class/gpio/unexport
     echo 255 | sudo tee /sys/class/gpio/unexport
     

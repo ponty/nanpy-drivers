@@ -1,5 +1,7 @@
 #define DEBUG
 
+// based on other Linux kernel modules: i2c-taos-evm.c, ...
+
 #include <linux/delay.h>
 #include <linux/module.h>
 #include <linux/slab.h>
@@ -140,6 +142,7 @@ static int digitalWrite(struct nanpy_data *nanpy, u8 pin, u8 value)
 
     return 0;
 }
+
 static int digitalRead(struct nanpy_data *nanpy, u8 pin)
 {
     int i;
@@ -151,6 +154,7 @@ static int digitalRead(struct nanpy_data *nanpy, u8 pin)
 
     return i;
 }
+
 static int pinMode(struct nanpy_data *nanpy, u8 pin, u8 mode)
 {
     int i;
@@ -169,10 +173,6 @@ static int pinMode(struct nanpy_data *nanpy, u8 pin, u8 mode)
     return 0;
 }
 
-
-
-
-
 static int Wire_begin(struct nanpy_data *nanpy)
 {
     int i;
@@ -190,6 +190,7 @@ static int Wire_begin(struct nanpy_data *nanpy)
 
     return 0;
 }
+
 static int Wire_beginTransmission(struct nanpy_data *nanpy, u16 addr)
 {
     int i;
@@ -207,6 +208,7 @@ static int Wire_beginTransmission(struct nanpy_data *nanpy, u16 addr)
 
     return 0;
 }
+
 static int Wire_write(struct nanpy_data *nanpy, u8 byte)
 {
     int i;
@@ -224,6 +226,7 @@ static int Wire_write(struct nanpy_data *nanpy, u8 byte)
 
     return 0;
 }
+
 static int Wire_endTransmission(struct nanpy_data *nanpy, bool stop)
 {
     int i;
@@ -253,6 +256,7 @@ static int Wire_endTransmission(struct nanpy_data *nanpy, bool stop)
 
     return 0;
 }
+
 static int Wire_requestFrom(struct nanpy_data *nanpy, u16 addr, u8 quantity, bool stop)
 {
     int i;
@@ -270,6 +274,7 @@ static int Wire_requestFrom(struct nanpy_data *nanpy, u16 addr, u8 quantity, boo
 
     return 0;
 }
+
 static int Wire_read(struct nanpy_data *nanpy)
 {
     int i;
@@ -291,6 +296,7 @@ static int nanpy_gpio_input(struct gpio_chip *chip, unsigned offset)
     RETURN_IF_ERROR( pinMode(nanpy, offset, 0) );
     return 0;
 }
+
 static int nanpy_gpio_output(struct gpio_chip *chip, unsigned offset, int value)
 {
     struct nanpy_data *nanpy = container_of(chip, struct nanpy_data, gpio_client);
@@ -311,7 +317,6 @@ static void nanpy_gpio_set(struct gpio_chip *chip, unsigned offset, int value)
     struct nanpy_data *nanpy = container_of(chip, struct nanpy_data, gpio_client);
     digitalWrite(nanpy, offset, value);
 }
-
 
 
 /*-------------I2C--------------------*/

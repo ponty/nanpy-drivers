@@ -1,3 +1,5 @@
+// based on inputattach.c
+
 #include <ctype.h>
 #include <errno.h>
 #include <fcntl.h>
