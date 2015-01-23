@@ -12,6 +12,7 @@
 #include <linux/sched.h>
 #include <linux/i2c.h>
 #include <linux/gpio.h>
+#include <linux/gpio/driver.h>
 
 #define NANPY_BUFFER_SIZE   63
 #define NANPY_TIMEOUT_MS    20

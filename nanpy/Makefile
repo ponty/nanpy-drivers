@@ -1,5 +1,7 @@
 TARGET = nanpy
 
+
+
 ifneq ($(KERNELRELEASE),)
 # call from kernel build system
 
@@ -7,11 +9,12 @@ obj-m	:= $(TARGET).o
 
 else
 
-KERNELDIR ?= /lib/modules/$(shell uname -r)/build
+# out-of-tree build
+KDIR ?= /lib/modules/`uname -r`/build
 PWD       := $(shell pwd)
 
 default:
-	$(MAKE) -C $(KERNELDIR) SUBDIRS=$(PWD) modules
+	$(MAKE) -C $(KDIR) M=$(PWD) modules
 
 endif
 

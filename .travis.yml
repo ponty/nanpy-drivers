@@ -1,2 +1,3 @@
 language: c
-script: make
+install: travis_install.sh
+script: travis_script.sh
