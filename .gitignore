@@ -32,6 +32,7 @@
 
 .*
 !.git*
+!.travis*
 
 *.cmd
 *.mod.c
